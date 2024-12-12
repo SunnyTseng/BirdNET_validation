@@ -55,3 +55,5 @@ shiny::runGitHub("BirdNET_validation", "SunnyTseng")
 5.  You can adjust the “Settings” on the left panel to view the spectrogram. Click on the “Praise me” button if you are feeling tired of validating sounds. 😃
 
 ![](images/clipboard-2147672079.png)
+
+6.  Enjoy listening 🐦

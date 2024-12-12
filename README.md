@@ -71,3 +71,5 @@ shiny::runGitHub("BirdNET_validation", "SunnyTseng")
     tired of validating sounds. 😃
 
 ![](images/clipboard-2147672079.png)
+
+6.  Enjoy listening 🐦
