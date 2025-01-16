@@ -15,16 +15,18 @@ library(seewave)
 
 
 # Function to play audio based on filepath, start, and end columns
-play_audio <- function(filepath) { 
-  song <- readWave(filepath, units = "seconds") #
+play_audio <- function(filepath, start, end) { 
+  song <- readWave(filepath, from = start - 3, to = end + 3,
+                   units = "seconds") 
   play(song, ... = "/play /close") 
 }
 
 
 # Function to view spectrogram
-view_spectrogram <- function(filepath, flim, wl) {
+view_spectrogram <- function(filepath, flim, wl, start, end) {
   # Read in the specific segment of the audio file
-  song <- readWave(filepath, units = "seconds")
+  song <- readWave(filepath, from = start - 3, to = end + 3,
+                   units = "seconds") 
   
   # Plot the spectrogram
   seewave::spectro(song, f = song@samp.rate, flim = flim, ovlp = 50,
@@ -258,8 +260,8 @@ server <- function(input, output, session) {
     
     # Retrieve the file path and start/end times for the selected row
     selected_row <- rv$data_display[info$row, ]
-    filepath <- paste0(dir_path(), "/", 
-                      basename(selected_row$filepath))
+    filepath <- paste0(dir_path(), "/",
+                       basename(selected_row$filepath))
     
     # show spectrogram
     if (file.exists(filepath)) {
@@ -267,7 +269,9 @@ server <- function(input, output, session) {
         
         view_spectrogram(filepath = filepath,
                          flim = input$flim,
-                         wl = input$wl)
+                         wl = input$wl,
+                         start = selected_row$start, 
+                         end = selected_row$end)
       })
     } else {
       showNotification("Audio file not found.", type = "error")
@@ -291,7 +295,7 @@ server <- function(input, output, session) {
     
     # Play the audio file
     if (file.exists(filepath)) {
-      play_audio(filepath = filepath)
+      play_audio(filepath = filepath, start = selected_row$start, end = selected_row$end)
     } else {
       showNotification("Audio file not found.", type = "error")
     }
