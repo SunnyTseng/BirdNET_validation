@@ -167,7 +167,7 @@ server <- function(input, output, session) {
     
     # Render the data table with a play button
     rv$data_display %>%
-      select("datetime", "common_name", "id") %>%
+      select("filepath", "scientific_name", "common_name", "start", "end") %>%
       mutate(`Spectrogram` = '<button class="spectrogram">Spectrogram</button>',
              `Audio` = '<button class="play-audio">Audio</button>') %>%
       datatable(editable = TRUE,
@@ -254,12 +254,12 @@ server <- function(input, output, session) {
     info <- input$main_table_cell_clicked
     
     # Check if the click was on the spectrogram button
-    if (is.null(info$value) || info$col != 4) return()
+    if (is.null(info$value) || info$col != 6) return()
     
     # Retrieve the file path and start/end times for the selected row
     selected_row <- rv$data_display[info$row, ]
     filepath <- paste0(dir_path(), "/", 
-                       selected_row$common_name, "_", selected_row$id, ".wav")
+                      basename(selected_row$filepath))
     
     # show spectrogram
     if (file.exists(filepath)) {
@@ -281,12 +281,12 @@ server <- function(input, output, session) {
     info <- input$main_table_cell_clicked
     
     # Check if the click was on the play-audio button
-    if (is.null(info$value) || info$col != 5) return()
+    if (is.null(info$value) || info$col != 7) return()
     
     # Retrieve the file path and start/end times for the selected row
     selected_row <- rv$data_display[info$row, ]
     filepath <- paste0(dir_path(), "/", 
-                       selected_row$common_name, "_", selected_row$id, ".wav")
+                       basename(selected_row$filepath))
 
     
     # Play the audio file
