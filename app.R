@@ -259,7 +259,7 @@ server <- function(input, output, session) {
     # Retrieve the file path and start/end times for the selected row
     selected_row <- rv$data_display[info$row, ]
     filepath <- paste0(dir_path(), "/", 
-                       selected_row$common_name, "_", selected_row$id, ".wav")
+                      basename(selected_row$filepath))
     
     # show spectrogram
     if (file.exists(filepath)) {
@@ -286,7 +286,7 @@ server <- function(input, output, session) {
     # Retrieve the file path and start/end times for the selected row
     selected_row <- rv$data_display[info$row, ]
     filepath <- paste0(dir_path(), "/", 
-                       selected_row$common_name, "_", selected_row$id, ".wav")
+                       basename(selected_row$filepath))
 
     
     # Play the audio file
