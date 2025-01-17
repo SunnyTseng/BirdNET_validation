@@ -24,7 +24,7 @@ play_audio <- function(filepath, start, end) {
   
   # Read and play the audio file
   song <- readWave(filepath, from = start - 3, to = end + 3, units = "seconds")
-  play(song, ... = "/play /close")
+  play(song)
 }
 
 
