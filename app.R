@@ -15,10 +15,16 @@ library(seewave)
 
 
 # Function to play audio based on filepath, start, and end columns
-play_audio <- function(filepath, start, end) { 
-  song <- readWave(filepath, from = start - 3, to = end + 3,
-                   units = "seconds") 
-  play(song, ... = "/play /close") 
+play_audio <- function(filepath, start, end) {
+  
+  # Check the operating system
+  if (Sys.info()["sysname"] == "Darwin") { # Darwin indicates macOS
+    setWavPlayer("afplay")
+  }
+  
+  # Read and play the audio file
+  song <- readWave(filepath, from = start - 3, to = end + 3, units = "seconds")
+  play(song, ... = "/play /close")
 }
 
 
