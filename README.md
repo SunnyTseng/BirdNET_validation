@@ -1,7 +1,9 @@
 BirdNET validation Shiny App
 ================
 Sunny Tseng
-2024-12-12
+2026-09-11
+
+### ↪️ Notice: The functionality of this Shiny Tool has been integrated into an R package [birdnetTools](https://birdnet-team.github.io/birdnetTools/). While the code in this repository remains available and usable, active maintenance, bug fixes, and new features will take place in the R package repo.
 
 ## Background
 

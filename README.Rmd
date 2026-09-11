@@ -9,6 +9,8 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+### ↪️ Notice: The functionality of this Shiny Tool has been integrated into an R package [birdnetTools](https://birdnet-team.github.io/birdnetTools/). While the code in this repository remains available and usable, active maintenance, bug fixes, and new features will take place in the R package repo.
+
 ## Background
 
 After processing audio files with BirdNET, a detection table is generated that includes the file name, start time, end time, detected species name, and a confidence score ranging from 0.1 to 1, which indicates the likelihood of detection accuracy. However, there is no established threshold for users to determine which detections to trust. A high threshold can increase precision but may exclude valid detections, while a low threshold retains more detections but may reduce precision. To identify a species-specific threshold, users can create a calibration curve linking BirdNET confidence scores to true positive probabilities, but this requires a validated dataset.
